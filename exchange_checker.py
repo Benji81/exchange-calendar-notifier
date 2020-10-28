@@ -85,6 +85,14 @@ class Checker:
                 notify(message=event["subject"], location=event["location"])
                 self.already_notified.add(event["id"])
 
+    @staticmethod
+    def remaining_time_text(event):
+        """Generate a remaining time in hours+minutes or just minutes"""
+        in_seconds = event["remaining"].seconds
+        if in_seconds >= 3600:
+            return f"{in_seconds//3600}h {(in_seconds % 3600) // 60}m"
+        return f"{in_seconds // 60}m"
+
 
 def get_conf():
     """
