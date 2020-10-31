@@ -22,6 +22,7 @@ def main():
         "exchangeChecker", "calendar", appindicator.IndicatorCategory.APPLICATION_STATUS
     )
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+    indicator.set_title("Exchange Checker")
 
     def create_menu(with_event=True):
         """Replace the app menu each time it is called"""
@@ -34,7 +35,6 @@ def main():
         if with_event:
             checker.store_next_events()
             checker.notify_if_in_less()
-            print("check_done")
             for event in checker.next_events:
                 event_item = gtk.MenuItem(
                     f"{event['subject']}"
@@ -53,10 +53,8 @@ def main():
 
     def check_now(_):
         """Refresh events list"""
-        print("check now")
         checker.store_next_events()
         checker.notify_if_in_less()
-        print("check_done")
 
     def event_pressed(_, event):
         """Called when event item is selected in the menu"""
@@ -72,6 +70,7 @@ def main():
             f"Start: {event['start'].astimezone(get_localzone()).strftime('%y-%m-%d %H:%M')}\n\n"
             f"Sensitivity: {event['sensitivity']}"
         )
+        dialog.set_icon_from_file("schedule.png")
         dialog.run()
 
         dialog.destroy()
@@ -79,7 +78,6 @@ def main():
     def check_loop():
         """Thread look to check and call menu update"""
         while True:
-            print("Check")
             GLib.idle_add(create_menu)
             time.sleep(DEFAULT_CHECK_PERIOD_IN_MINUTES * 60)
 
