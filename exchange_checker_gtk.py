@@ -33,6 +33,7 @@ def main():
 
         if with_event:
             checker.store_next_events()
+            checker.notify_if_in_less()
             print("check_done")
             for event in checker.next_events:
                 event_item = gtk.MenuItem(
@@ -54,6 +55,7 @@ def main():
         """Refresh events list"""
         print("check now")
         checker.store_next_events()
+        checker.notify_if_in_less()
         print("check_done")
 
     def event_pressed(_, event):
