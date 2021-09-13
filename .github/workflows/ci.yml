@@ -27,7 +27,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Setup packages
       run: |
-        sudo apt install libgirepository1.0-dev libcairo2-dev gir1.2-appindicator3
+        sudo apt install libgirepository1.0-dev libcairo2-dev gir1.2-appindicator3-0.1
     - name: Install poetry
       run: |
         python -m pip install --upgrade pip
