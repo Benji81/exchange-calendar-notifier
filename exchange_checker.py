@@ -111,7 +111,7 @@ def get_conf():
         address = input("Enter address: ")  # nosec
         config["DEFAULT"]["username"] = username
         config["DEFAULT"]["address"] = address
-        with open(path, "w") as configfile:
+        with open(path, "w", encoding="utf-8") as configfile:
             config.write(configfile)
 
     password = keyring.get_password("exchange-notifier", username)
