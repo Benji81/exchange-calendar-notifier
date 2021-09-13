@@ -6,10 +6,10 @@ authors = ["Benjamin <benji81@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-exchangelib = "^3.3.2"
 notify-py = "^0.2.3"
 PyGObject = "^3.38.0"
 keyring = "^21.4.0"
+exchangelib = "^4.5.1"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
